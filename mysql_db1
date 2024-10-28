@@ -1,0 +1,41 @@
+mysql -h 172.16.17.251 -u u222236 -p
+Enter password: ********
+SHOW databases;
+USE u222236
+
+CREATE table staff(
+    F_Name VARCHAR(20),
+    Title VARCHAR(20),
+    YOS INT,
+    DOB DATE);
+
+INSERT INTO staff(F_Name,Title,YOS,DOB) VALUES
+('Manish','Programmer',5,'1975-10-10'),
+('Saman','Web Developer',6,'1976-03-05'),
+('Camelia','Java Developer',3,'1980-05-06'),
+('Kamal','Clerk',10,'1968-10-03'),
+('Malan','Software Engineer',5,'1975-06-07');
+
+SELECT*FROM staff WHERE F_NAME='Manish';
+SELECT*FROM staff WHERE DOB='1968-10-10';
+SELECT*FROM staff WHERE DOB='1975-10-10';
+SELECT*FROM staff WHERE F_NAME='Camelia' AND Title ='Java Developer';
+SELECT*FROM staff WHERE Title ='Web Developer' OR Title ='Java Developer';
+
+SELECT*FROM staff WHERE F_NAME LIKE 'M%';
+SELECT*FROM staff WHERE F_NAME LIKE '%lia';
+SELECT*FROM staff WHERE F_NAME LIKE '%ma%';
+
+SELECT*FROM staff WHERE Title IN('Programmer','Web Developer','Java developer');
+SELECT*FROM staff WHERE YOS NOT IN(5,10);
+
+UPDATE staff SET Title='Senior Programmer',YOS=6 WHERE F_Name='Manish'; 
+SELECT * FROM staff;
+
+DELETE FROM staff WHERE F_NAME='Kamal';
+SELECT * FROM staff;
+DELETE FROM staff WHERE YOS<6;
+SELECT * FROM staff;
+DELETE FROM staff WHERE YOS<8;
+SELECT * FROM staff;
+
