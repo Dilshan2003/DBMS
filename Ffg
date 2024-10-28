@@ -1,0 +1,4 @@
+SELECT * FROM STAFF WHERE department = 'Sales' AND status = 'Active';
+
+
+SELECT * FROM STAFF WHERE department = 'Sales' AND status = 'Active';
