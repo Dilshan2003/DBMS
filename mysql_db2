@@ -1,0 +1,163 @@
+CREATE table Customer(
+    CustID INT PRIMARY KEY,
+    FirstName VARCHAR(50)NOT NULL,
+    LastName VARCHAR(50)NOT NULL
+    );
+    
+   CREATE table Contact(
+    ID VARCHAR(10) PRIMARY KEY,
+    CustID INT,
+    ContactInformation VARCHAR(100),
+    ContactType VARCHAR(20),
+    FOREIGN KEY (CustID) REFERENCES Customer (CustID)
+    );
+
+    SHOW tables;
+    DESCRIBE Customer;
+    DESCRIBE Contact;
+
+     INSERT INTO Customer(CustID,FirstName,LastName) VALUES
+       (101,'Elaine','Stevens'),
+       (102,'Mary','Dittman'),
+       (103,'Skip','Stevenson'),
+       (104,'Drew','Lakeman'),
+       (105,'Eva','Plummer');
+
+    SELECT *FROM Customer;
+
+    INSERT INTO Contact(ID,CustID,ContactInformation,ContactType) VALUES
+       ('C1',101,'555-2653','Work'),
+       ('C2',101,'555-0057','Cell'),
+       ('C3',102,'555-8816','Work'),
+       ('C4',104,'555-0949','Work'),
+       ('C5',103,'555-0650','Work'),
+       ('C6',103,'555-8855','Home'),
+       ('C7',105,'Plummer@akcomms.com','Email'),
+       ('C8',101,'Stevens@akcomms.com','Email'),
+       ('C9',101,'555-4787','Fax'),
+       ('C10',103,'Stevens@akcomms.com','Email'),
+       ('C11',105,'555-5675','Work'),
+       ('C12',102,'Dittman@akcomms.com','Email');
+
+     SHOW tables;
+     SELECT *FROM Contact;
+ 
+      INSERT INTO Contact(ID,CustID,ContactInformation,ContactType) VALUES
+      ('C13',106,'555-9999','Work');
+
+       INSERT INTO Customer(CustID,FirstName,LastName) VALUES
+       (106,'Elon','Musk');
+       INSERT INTO Contact(ID,CustID,ContactInformation,ContactType) VALUES
+       ('C13',106,'555-9999','Work');
+
+      DROP table Contact;
+
+       CREATE table Contact(
+    ID VARCHAR(10) PRIMARY KEY,
+    CustID INT,
+    ContactInformation VARCHAR(100),
+    ContactType VARCHAR(20),
+    FOREIGN KEY (CustID) REFERENCES Customer (CustID)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE
+    );
+
+    INSERT INTO Contact(ID,CustID,ContactInformation,ContactType) VALUES
+       ('C1',101,'555-2653','Work'),
+       ('C2',101,'555-0057','Cell'),
+       ('C3',102,'555-8816','Work'),
+       ('C4',104,'555-0949','Work'),
+       ('C5',103,'555-0650','Work'),
+       ('C6',103,'555-8855','Home'),
+       ('C7',105,'Plummer@akcomms.com','Email'),
+       ('C8',101,'Stevens@akcomms.com','Email'),
+       ('C9',101,'555-4787','Fax'),
+       ('C10',103,'Stevens@akcomms.com','Email'),
+       ('C11',105,'555-5675','Work'),
+       ('C12',102,'Dittman@akcomms.com','Email');
+
+    DELETE FROM Customer WHERE CustID=101;
+    SELECT *FROM Customer;
+    SELECT *FROM Contact;   
+    UPDATE Customer SET CustID=201 WHERE CustID=102;
+    SELECT *FROM Customer;
+    SELECT *FROM Contact;  
+
+    DROP table Customer;
+    DROP table Contact;
+    DROP table Customer;
+
+    CREATE table Customer(
+    CustID INT PRIMARY KEY,
+    FirstName VARCHAR(50)NOT NULL,
+    LastName VARCHAR(50)NOT NULL
+    );
+
+INSERT INTO Customer(CustID,FirstName,LastName) VALUES
+       (101,'Elaine','Stevens'),
+       (102,'Mary','Dittman'),
+       (103,'Skip','Stevenson'),
+       (104,'Drew','Lakeman'),
+       (105,'Eva','Plummer');
+
+CREATE table Contact(
+    ID VARCHAR(10) PRIMARY KEY,
+    CustID INT,
+    ContactInformation VARCHAR(100),
+    ContactType VARCHAR(20),
+    FOREIGN KEY (CustID) REFERENCES Customer (CustID)
+    ON DELETE RESTRICT
+    ON UPDATE RESTRICT
+    );
+
+INSERT INTO Contact(ID,CustID,ContactInformation,ContactType) VALUES
+       ('C1',101,'555-2653','Work'),
+       ('C2',101,'555-0057','Cell'),
+       ('C3',102,'555-8816','Work'),
+       ('C4',104,'555-0949','Work'),
+       ('C5',103,'555-0650','Work'),
+       ('C6',103,'555-8855','Home'),
+       ('C7',105,'Plummer@akcomms.com','Email'),
+       ('C8',101,'Stevens@akcomms.com','Email'),
+       ('C9',101,'555-4787','Fax'),
+       ('C10',103,'Stevens@akcomms.com','Email'),
+       ('C11',105,'555-5675','Work'),
+       ('C12',102,'Dittman@akcomms.com','Email');
+
+       SELECT *FROM Contact;  
+
+       DELETE FROM Customer WHERE CustID=103;
+       UPDATE Customer SET CustID=202 WHERE CustID=104;
+
+       DROP table Contact;
+
+CREATE table Contact(
+    ID VARCHAR(10) PRIMARY KEY,
+    CustID INT,
+    ContactInformation VARCHAR(100),
+    ContactType VARCHAR(20),
+    FOREIGN KEY (CustID) REFERENCES Customer (CustID)
+    ON DELETE SET NULL
+    ON UPDATE SET NULL
+    );
+
+INSERT INTO Contact(ID,CustID,ContactInformation,ContactType) VALUES
+       ('C1',101,'555-2653','Work'),
+       ('C2',101,'555-0057','Cell'),
+       ('C3',102,'555-8816','Work'),
+       ('C4',104,'555-0949','Work'),
+       ('C5',103,'555-0650','Work'),
+       ('C6',103,'555-8855','Home'),
+       ('C7',105,'Plummer@akcomms.com','Email'),
+       ('C8',101,'Stevens@akcomms.com','Email'),
+       ('C9',101,'555-4787','Fax'),
+       ('C10',103,'Stevens@akcomms.com','Email'),
+       ('C11',105,'555-5675','Work'),
+       ('C12',102,'Dittman@akcomms.com','Email');
+
+SELECT *FROM Contact; 
+DELETE FROM Customer WHERE CustID=105;
+SELECT *FROM Contact;
+UPDATE Customer SET CustID=203 WHERE CustID=103;
+SELECT *FROM Contact;
+
