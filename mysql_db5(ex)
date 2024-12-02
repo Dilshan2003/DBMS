@@ -1,0 +1,79 @@
+CREATE TABLE Professors(
+  ProfID INT PRIMARY KEY,
+  F_Name VARCHAR(50) NOT NULL,
+  L_NAME VARCHAR(50) NOT NULL,
+  Department VARCHAR(50) NOT NULL,
+  Salary FLOAT(10,2) NOT NULL,
+  HireDate DATE NOT NULL
+  );
+
+DESCRIBE Professors;
+
+INSERT INTO Professors(ProfID,F_Name,L_NAME, Department,Salary,HireDate) VALUES
+  (101,"John","Smith","Computer Science",120000.00,'2005-09-15'),
+  (102,"Alice","Johnson","Mathematics",95000.00,'2010-07-01'),
+  (103,"Robert","Brown","Physics",88000.00,'2008-03-12'),
+  (104,"Maria","Garcia","Chemistry",77000.00,'2015-01-05'),
+  (105,"Emily","Wilson","Computer Science",110000.00,'2011-10-18'),
+  (106,"James","Davis","Mathematics",102000.00,'2001-11-23')
+  ;
+
+
+SELECT  *FROM  Professors;
+
+CREATE TABLE Students_uni(
+ StudentID INT(11) PRIMARY KEY,
+ F_Name VARCHAR(50) NOT NULL,
+ L_NAME VARCHAR(50) NOT NULL,
+ Major VARCHAR(50) NOT NULL,
+ GPA FLOAT(3,2) NOT NULL,
+ ProfID INT(11) NOT NULL,
+ FOREIGN KEY (ProfID) REFERENCES Professors (ProfID)
+ );
+
+DESCRIBE Students_uni;
+
+INSERT INTO Students_uni(StudentID,F_Name,L_NAME,Major,GPA,ProfID) VALUES
+  (201,"Emma","Thomas","Computer Science",3.80,101),
+  (202,"Noah","Martin","Mathematics",3.20,102),
+  (203,"Ava","Lee","Physics",3.50,103),
+  (204,"Sophia","Anderson","Computer Science",3.90,105),
+  (205,"Mia","Harris","Chemistry",2.80,104),
+  (206,"Isabella","Scott","Mathematics",3.70,102)
+  ;
+
+SELECT  *FROM Students_uni;
+
+CREATE TABLE Courses_uni(
+ CourseID INT(11) PRIMARY KEY,
+ CourseName VARCHAR(100) NOT NULL,
+ Credits INT(11) NOT NULL,
+ ProfID INT(11) NOT NULL,
+ Department VARCHAR(50) NOT NULL,
+ FOREIGN KEY (ProfID) REFERENCES Professors (ProfID)
+ );
+
+DESCRIBE Courses_uni;
+
+INSERT INTO Courses_uni(CourseID,CourseName,Credits,ProfID,Department) VALUES
+  (301,"Algorithms",3,101,"Computer Science"),
+  (302,"Data Structures",4,101,"Computer Science"),
+  (303,"Calculus I",3,102,"Mathematics"),
+  (304,"Quantum Physics",3,103,"Physics"),
+  (305,"Organic Chemistry",3,104,"Chemistry"),
+  (306,"Linear Algebra",4,106,"Mathematics")
+  ;
+
+SELECT  *FROM Courses_uni;
+
+SELECT *FROM Professors WHERE HireDate<'2010-01-01';
+SELECT *FROM Professors WHERE  CourseID=NULL;
+SELECT CourseName FROM Courses_uni;
+
+SELECT AVG(GPA) AS Average_GPA  FROM Students_uni WHERE ProfID=101;
+SELECT Department, MAX(Salary) AS Highest_Salary FROM Professors GROUP BY Department;
+SELECT MAX(Credits)-MIN(Credits) AS Credit_Difference FROM Courses_uni;
+SELECT SUM(Salary) AS Total_salary FROM Professors WHERE Department='Computer Science';
+
+
+
