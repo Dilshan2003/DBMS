@@ -1,0 +1,75 @@
+Converting ER into a Relational Schema
+Referring to your lecture notes,
+convert this ER for a book publishing scenario into relational model and create the necessary tables in MySQL appropriately, 
+clearly indicating the primary key, foreign key and other integrities.
+
+REFERENCE GITHUB IN DBMS(download.png,download(1).png)
+
+Person(TFN,Name,Address)
+Author(TFN,AuthorID,PenName)
+Editor(TFN,EditorID,ABN)
+Publisher(ABN,Name,Address)
+Books(ISBN,Title,Edition,ABN)
+Author_Books(ISBN,TFN)
+
+
+CREATE TABLE Person(
+TFN VARCHAR(20) PRIMARY KEY,
+Name VARCHAR(20),
+Address VARCHAR(100)
+);
+
+CREATE TABLE Author(
+AuthorID VARCHAR(20),
+TFN VARCHAR(20),
+PenName VARCHAR(100),
+PRIMARY KEY (TFN),
+FOREIGN KEY (TFN) REFERENCES Person(TFN)
+);
+
+CREATE TABLE Publisher(
+ABN VARCHAR(20) PRIMARY KEY,
+NAME VARCHAR(100), 
+Address VARCHAR(200)
+); 
+
+
+CREATE TABLE Editor(
+EditorID VARCHAR(20),
+TFN VARCHAR(20),
+ABN VARCHAR(20),
+PRIMARY KEY (TFN),
+FOREIGN KEY (ABN) REFERENCES Publisher(ABN),
+FOREIGN KEY (TFN) REFERENCES Person(TFN)
+);
+
+CREATE TABLE Books(
+ISBN VARCHAR(20) PRIMARY KEY,
+AuthorID VARCHAR(20),
+Title VARCHAR(200),
+Edition INT,
+BookID VARCHAR(20),
+ABN VARCHAR(20),
+FOREIGN KEY (ABN) REFERENCES Publisher(ABN)
+);
+
+CREATE TABLE Author_Books(
+TFN VARCHAR(20),
+ISBN VARCHAR(20),
+PRIMARY KEY(TFN,ISBN),
+FOREIGN KEY (TFN) REFERENCES Author(TFN),
+FOREIGN KEY (ISBN) REFERENCES Books(ISBN)
+);
+
+INSERT INTO Publisher(ABN,Name,Address) VALUES
+ ('1','New Moon Books','10932 Biggs Rd'),
+ ('2','Binnet & Hardley','30963 rd St #411'),
+ ('3','Algodata Infosystem','589 Darwin Ln'),
+ ('4','Ramona Publishers','22 Cleveland Av # 14'),
+ ('5','GGG&G','10 Mississipi Dr')
+;
+
+INSERT INTO Books(ISBN,Title,Edition,AuthorID,BookID,ABN) VALUES
+
+
+
